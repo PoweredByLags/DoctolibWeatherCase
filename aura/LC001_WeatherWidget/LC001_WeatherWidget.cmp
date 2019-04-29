@@ -1,0 +1,77 @@
+<aura:component controller="SM001_Weather" implements="force:hasSObjectName,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="temperature" type="Integer" />
+    <aura:attribute name="humidity" type="Integer" />
+    <aura:attribute name="windSpeed" type="Integer" />
+    <aura:attribute name="clouds" type="String" />
+    <aura:attribute name="weatherState" type="String" />
+    
+    <div class="slds-card" style="background-color: #0A0808;">
+        <div class="slds-grid slds-grid--vertical-align-start">
+            <div>
+                <div aura:id="sun-shower" class="icon sun-shower hidden">
+                    <div class="cloud"></div>
+                    <div class="sun">
+                        <div class="rays"></div>
+                    </div>
+                    <div class="rain"></div>
+                </div>
+                
+                <div aura:id="cloudy-sun" class="icon sun-shower hidden">
+                    <div class="cloud"></div>
+                    <div class="sun">
+                        <div class="rays"></div>
+                    </div>
+                </div>
+                
+                <div aura:id="thunder-storm" class="icon thunder-storm hidden">
+                    <div class="cloud"></div>
+                    <div class="lightning">
+                        <div class="bolt"></div>
+                        <div class="bolt"></div>
+                    </div>
+                </div>
+                
+                <div aura:id="cloudy" class="icon cloudy hidden">
+                    <div class="cloud"></div>
+                    <div class="cloud"></div>
+                </div>
+                
+                <div aura:id="snowy" class="icon snowy hidden">
+                    <div class="cloud"></div>
+                    <div class="snow">
+                        <div class="flake"></div>
+                        <div class="flake"></div>
+                    </div>
+                </div>
+                
+                <div aura:id="sunny" class="icon sunny hidden">
+                    <div class="sun">
+                        <div class="rays"></div>
+                    </div>
+                </div>
+                
+                <div aura:id="rainy" class="icon rainy hidden">
+                    <div class="cloud"></div>
+                    <div class="rain"></div>
+                </div>
+            </div>
+            <div class="weather-details">
+                <div class="temp-main">{!v.temperature}° C | {!v.clouds}</div>
+                <table width="300px">
+                    <tr>
+                        <td>{!$Label.c.Weather_Wind_Label}: </td>
+                        <td>{!v.windSpeed} km/h</td>
+                    </tr>
+                    <tr>
+                        <td>{!$Label.c.Weather_Humidity_Label}:  </td>
+                        <td>{!v.humidity} %</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="send-mail">
+            <a href="" class="send-report-mail" onclick="{!c.sendMail}">{!$Label.c.Weather_Send_Report_Label}</a>
+        </div>
+    </div>
+</aura:component>
